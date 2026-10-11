@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#6c63ff">
+  <title>Matemática Divertida da Ananda</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Início">
+      <span class="brand-icon">✦</span>
+      <span>Matemática <b>Divertida</b><small>uma aventura com a Ananda</small></span>
+    </a>
+    <div class="top-stats">
+      <span class="stat-pill">⭐ <b id="headerPoints">0</b> pontos</span>
+      <span class="stat-pill">🔥 <b id="headerStreak">0</b> sequência</span>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section class="welcome-card">
+      <div class="welcome-copy">
+        <span class="eyebrow">SEU CANTINHO DE DESCOBERTAS</span>
+        <h1>Oi, Ananda! <span class="wave">👋</span></h1>
+        <p>Vamos aprender Matemática brincando? Cada tentativa é um passo para ficar craque!</p>
+        <button class="primary-btn" data-go="practice">Bora praticar <span>→</span></button>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="sun"></div><div class="float f1">×</div><div class="float f2">÷</div>
+        <div class="book">📚</div><div class="pencil">✏️</div><div class="star s1">✦</div><div class="star s2">✦</div>
+      </div>
+    </section>
+
+    <nav class="main-nav" aria-label="Menu principal">
+      <button class="nav-item active" data-view="home"><span>🏡</span> Início</button>
+      <button class="nav-item" data-view="learn"><span>💡</span> Aprender</button>
+      <button class="nav-item" data-view="practice"><span>✍️</span> Praticar</button>
+      <button class="nav-item" data-view="game"><span>🎮</span> Jogar</button>
+      <button class="nav-item" data-view="progress"><span>🏆</span> Meu progresso</button>
+    </nav>
+
+    <section id="homeView" class="view active-view">
+      <div class="section-heading">
+        <div><span class="eyebrow">ESCOLHA SUA AVENTURA</span><h2>O que vamos aprender hoje?</h2></div>
+        <span class="heading-emoji">🌈</span>
+      </div>
+      <div class="topic-grid">
+        <button class="topic-card mint" data-topic="add"><span class="topic-icon">➕</span><span class="topic-title">Adição</span><span>Junte quantidades</span><span class="card-arrow">→</span></button>
+        <button class="topic-card coral" data-topic="subtract"><span class="topic-icon">➖</span><span class="topic-title">Subtração</span><span>Descubra quanto sobra</span><span class="card-arrow">→</span></button>
+        <button class="topic-card purple" data-topic="tables"><span class="topic-icon">🔢</span><span class="topic-title">Tabuada</span><span>Treine as multiplicações</span><span class="card-arrow">→</span></button>
+        <button class="topic-card coral" data-topic="multiply"><span class="topic-icon">✖️</span><span class="topic-title">Multiplicação</span><span>Grupos iguais e contas</span><span class="card-arrow">→</span></button>
+        <button class="topic-card mint" data-topic="divide"><span class="topic-icon">➗</span><span class="topic-title">Divisão</span><span>Repartir em partes iguais</span><span class="card-arrow">→</span></button>
+      </div>
+      <div class="lower-grid">
+        <article class="panel daily-panel">
+          <div class="panel-title"><span>🌟</span><div><h3>Missão do dia</h3><p>Pequenos passos, grandes conquistas!</p></div></div>
+          <div class="mission-progress"><div><span>Questões respondidas</span><b id="dailyCount">0 / 5</b></div><div class="progress-track"><span id="dailyBar"></span></div></div>
+          <button class="text-btn" data-go="game">Começar missão <span>→</span></button>
+        </article>
+        <article class="panel tip-panel">
+          <span class="tip-badge">💡 DICA DA ANANDA</span>
+          <h3>Multiplicar é somar várias vezes!</h3>
+          <p>Por exemplo: <b>3 × 4</b> é o mesmo que 4 + 4 + 4. O resultado é 12!</p>
+          <div class="mini-groups" aria-label="Três grupos com quatro bolinhas">🔵🔵🔵🔵 &nbsp; 🔵🔵🔵🔵 &nbsp; 🔵🔵🔵🔵</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="learnView" class="view">
+      <div class="section-heading"><div><span class="eyebrow">PASSO A PASSO</span><h2>Vamos entender juntinhos</h2></div><span class="heading-emoji">💡</span></div>
+      <div class="lesson-tabs">
+        <button class="lesson-tab" data-lesson="add">➕ Adição</button>
+        <button class="lesson-tab" data-lesson="subtract">➖ Subtração</button>
+        <button class="lesson-tab selected" data-lesson="multiply">✖️ Multiplicação</button>
+        <button class="lesson-tab" data-lesson="divide">➗ Divisão</button>
+        <button class="lesson-tab" data-lesson="tables">🔢 Tabuada</button>
+      </div>
+      <article id="lessonContent" class="lesson-card"></article>
+      <button class="primary-btn" data-go="practice">Entendi! Quero praticar →</button>
+    </section>
+
+    <section id="practiceView" class="view">
+      <div class="section-heading"><div><span class="eyebrow">HORA DE TREINAR</span><h2>Você consegue, Ananda!</h2></div><span class="heading-emoji">✏️</span></div>
+      <div class="practice-toolbar">
+        <label for="practiceType">Operação (nível básico)</label>
+        <select id="practiceType">
+          <option value="mixed">Quatro operações misturadas</option><option value="add">Adição</option><option value="subtract">Subtração</option><option value="multiply">Multiplicação</option><option value="divide">Divisão</option><option value="tables">Tabuada</option>
+        </select>
+        <button id="newQuestionBtn" class="secondary-btn">Nova questão ↻</button>
+      </div>
+      <article class="question-card">
+        <div class="question-meta"><span id="questionLabel">DESAFIO DE MATEMÁTICA</span><span id="questionNumber">Questão 1</span></div>
+        <div class="question-visual" id="questionVisual">🧠</div>
+        <h3 id="questionText">Quanto é 3 × 4?</h3>
+        <p id="questionHint">Pense com calma. Você pode conseguir!</p>
+        <div id="answerOptions" class="answer-options" role="group" aria-label="Escolha uma resposta"></div>
+        <div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+        <button id="continueBtn" class="primary-btn continue-btn" hidden>Próxima questão →</button>
+      </article>
+      <p class="gentle-note">💜 Não precisa ter pressa. Errar faz parte de aprender!</p>
+    </section>
+
+    <section id="gameView" class="view">
+      <div class="section-heading"><div><span class="eyebrow">JOGO RÁPIDO</span><h2>Desafio das estrelas</h2></div><span class="heading-emoji">🎮</span></div>
+      <div class="game-intro"><div class="game-mascot">🦊</div><div><h3>Ajude a raposinha a ganhar estrelas!</h3><p>Responda 5 questões. Cada resposta correta vale 10 pontos. Vamos nessa?</p></div></div>
+      <div class="game-score-row"><div><span>Questões</span><b id="gameQuestionCount">0 / 5</b></div><div><span>Estrelas nesta rodada</span><b id="gameStars">⭐ 0</b></div><div><span>Pontos</span><b id="gamePoints">0</b></div></div>
+      <div id="gameQuestionArea" class="game-question-area">
+        <p>Pronta para começar a aventura?</p>
+        <button id="startGameBtn" class="primary-btn">Começar jogo 🚀</button>
+      </div>
+      <div id="gameResult" class="game-result" hidden></div>
+    </section>
+
+    <section id="progressView" class="view">
+      <div class="section-heading"><div><span class="eyebrow">CADA PASSO CONTA</span><h2>Olha só o que você já conquistou!</h2></div><span class="heading-emoji">🏆</span></div>
+      <div class="progress-cards">
+        <article class="metric-card lilac"><span>⭐</span><small>Pontos totais</small><b id="totalPoints">0</b></article>
+        <article class="metric-card peach"><span>✅</span><small>Respostas certas</small><b id="totalCorrect">0</b></article>
+        <article class="metric-card mint-bg"><span>📝</span><small>Questões tentadas</small><b id="totalAnswered">0</b></article>
+      </div>
+      <article class="panel progress-detail">
+        <div class="panel-title"><span>📈</span><div><h3>Seu aprendizado</h3><p>Veja como está indo. Continue praticando!</p></div></div>
+        <div class="overall-track"><span id="accuracyBar"></span></div>
+        <div class="accuracy-label"><span>Taxa de acertos</span><b id="accuracyText">0%</b></div>
+        <div class="subject-progress" id="subjectProgress"></div>
+      </article>
+      <button id="resetProgressBtn" class="reset-btn">Reiniciar progresso deste dispositivo</button>
+      <p class="gentle-note">O progresso fica salvo neste navegador. Se limpar os dados do navegador, ele poderá ser apagado.</p>
+    </section>
+
+    <footer><span>Feito com 💜 para a Ananda</span><span>Aprender também pode ser divertido!</span></footer>
+  </main>
+</body>
+</html>
